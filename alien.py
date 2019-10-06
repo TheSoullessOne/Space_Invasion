@@ -4,6 +4,7 @@ from pygame.sprite import Sprite
 
 class Alien(Sprite):
     """A class to represent a single alien in the fleet."""
+
     def __init__(self, ai_settings, screen):
         """Initialize the alien and set its starting position."""
         super(Alien, self).__init__()
@@ -11,15 +12,18 @@ class Alien(Sprite):
         self.ai_settings = ai_settings
 
         # Load the alien image and set its rect attribute.
-        self.image = pygame.image.load('Images/alien.bmp')
+        self.image = pygame.image.load(self.load_image())
         self.rect = self.image.get_rect()
 
-        #  Start each new alien enar the top left of the screen.
+        #  Start each new alien near the top left of the screen.
         self.rect.x = self.rect.width
         self.rect.y = self.rect.height
 
         #  Store the alien's exact position
         self.x = float(self.rect.x)
+
+    def load_image(self):
+        raise NotImplementedError
 
     def blit_me(self):
         """Draw the alien at its current location."""
@@ -32,6 +36,10 @@ class Alien(Sprite):
             return True
         elif self.rect.left <= 0:
             return True
+
+    def explode(self):
+        #  explosion
+        raise NotImplementedError
 
     def update(self):
         """Move the alien right."""
