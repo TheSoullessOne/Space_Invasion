@@ -12,7 +12,7 @@ class Alien1(Alien):
         pass
 
     def load_image(self):
-        return 'Images/UFO.bmp'
+        return 'Images/UFO.png'
 
 
 class Alien2(Alien):
@@ -23,7 +23,7 @@ class Alien2(Alien):
         pass
 
     def load_image(self):
-        return 'Images/UFO_Big.bmp'
+        return 'Images/UFO_Big.png'
 
 
 class Alien3(Alien):
@@ -34,7 +34,7 @@ class Alien3(Alien):
         pass
 
     def load_image(self):
-        return 'Images/UFO_Boss.bmp'
+        return 'Images/UFO_Boss.png'
 
 
 class Singleton(type):

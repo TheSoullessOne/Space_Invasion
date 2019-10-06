@@ -365,6 +365,58 @@ def update_screen(ai_settings, screen, stats, sb, ship, aliens, bullets, play_bu
         high_score_button.draw_button()
         quit_button.draw_button()
 
+        #  Alien 1 pic + points
+        alien1_image = pygame.image.load("Images/UFO.png")
+        alien1_image_rect = alien1_image.get_rect()
+        alien1_image_rect.centerx = (ai_settings.screen_width / 2) - 80
+        alien1_image_rect.centery = (ai_settings.screen_height / 2) + 50
+        screen.blit(alien1_image, alien1_image_rect)
+
+        alien1_points = TextBox(ai_settings, screen, stats)
+        alien1_points.update_text(" =    50")
+        alien1_points.text_rect.centery = alien1_image_rect.centery
+        alien1_points.text_rect.x += 20
+        alien1_points.draw(screen)
+
+        #  Alien 2 pic + points
+        alien2_image = pygame.image.load("Images/UFO_Big.png")
+        alien2_image_rect = alien2_image.get_rect()
+        alien2_image_rect.centerx = alien1_image_rect.centerx
+        alien2_image_rect.centery = alien1_image_rect.centery + 75
+        screen.blit(alien2_image, alien2_image_rect)
+
+        alien2_points = TextBox(ai_settings, screen, stats)
+        alien2_points.update_text(" =    100")
+        alien2_points.text_rect.centery = alien2_image_rect.centery
+        alien2_points.text_rect.x += 20
+        alien2_points.draw(screen)
+
+        #  Alien 3 pic + points
+        alien3_image = pygame.image.load("Images/UFO_Boss.png")
+        alien3_image_rect = alien2_image.get_rect()
+        alien3_image_rect.centerx = alien2_image_rect.centerx
+        alien3_image_rect.centery = alien2_image_rect.centery + 75
+        screen.blit(alien3_image, alien3_image_rect)
+
+        alien3_points = TextBox(ai_settings, screen, stats)
+        alien3_points.update_text(" =    150")
+        alien3_points.text_rect.centery = alien3_image_rect.centery
+        alien3_points.text_rect.x += 20
+        alien3_points.draw(screen)
+
+        #  Alien 4 pic + points
+        alien4_image = pygame.image.load("Images/Random_Alien.png")
+        alien4_image_rect = alien3_image.get_rect()
+        alien4_image_rect.centerx = alien3_image_rect.centerx
+        alien4_image_rect.centery = alien3_image_rect.centery + 75
+        screen.blit(alien4_image, alien4_image_rect)
+
+        alien4_points = TextBox(ai_settings, screen, stats)
+        alien4_points.update_text(" =    1000")
+        alien4_points.text_rect.centery = alien4_image_rect.centery
+        alien4_points.text_rect.x += 20
+        alien4_points.draw(screen)
+
         #  Draw the high_score screen if button was clicked
     elif not stats.game_active and stats.high_score_active:
         screen.fill(ai_settings.bg_color)

@@ -21,6 +21,8 @@ def run_game():
     quit_button = Button(ai_settings, screen, "Quit")
     back_button = Button(ai_settings, screen, "Back")
     start_button = Button(ai_settings, screen, "Start!")
+    play_button.rect.centery -= 150
+    play_button.msg_image_rect.centery = play_button.rect.centery
     high_score_button.rect.bottom = play_button.rect.bottom + 100
     high_score_button.msg_image_rect.center = high_score_button.rect.center
     quit_button.rect.bottom = screen.get_rect().bottom
