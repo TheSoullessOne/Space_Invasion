@@ -62,8 +62,6 @@ class Ship(Sprite):
             self.image = pygame.image.load(self.explosion_frames[self.frame_index])
             self.screen.blit(self.image, self.rect)
             self.frame_index += 1
-            print(self.frame_index)
-            # pygame.time.delay(100)
         else:
             self.alive = True
             self.frame_index = 0

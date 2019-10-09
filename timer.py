@@ -10,10 +10,13 @@ class Timer:
         self.loop_once = loop_once
         self.finished = False
         self.last_frame = len(frames) - 1 if step == 1 else 0
-        self.last = None
+        self.last = pygame.time.get_ticks()
 
     def frame_index_func(self):
+        print(self.last)
         now = pygame.time.get_ticks()
+        print(now)
+
         if self.last is None:
             self.last = now
             self.frame_index = 0 if self.step == 1 else len(self.frames) - 1

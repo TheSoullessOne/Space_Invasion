@@ -8,6 +8,7 @@ class GameStats:
         self.game_active = False
         self.high_score_active = False
         self.get_initials = False
+        self.game_over = False
         self.high_score = 0
         self.level = 1
         self.initials = ''

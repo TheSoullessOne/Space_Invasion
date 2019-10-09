@@ -305,20 +305,12 @@ def get_user_input(text):
 
 def ship_hit(ai_settings, stats, screen, sb, ship, aliens, bullets, bunkers):
     #  Need to pass in Timer class in here for 8 frames of animation of the crash
-    # frames = ship.get_image_frames()
-    # timer = Timer(frames, 60, 0, 1, False)
-    # print(timer.__str__())
-    # for i in range(8):
-    # explosion = Explosion(ship.rect.center, ship.get_image_frames())
-    # screen.blit(explosion.image, ship.rect)
     ai_settings.rand_alien_alive = False
     #  Decrement ships_left
     if stats.ships_left > 0:
         stats.ships_left -= 1
 
         ship.alive = False
-        for i in range(8):
-            ship.blit_me()
 
         #  Update scoreboard
         sb.prep_ships()
@@ -333,12 +325,10 @@ def ship_hit(ai_settings, stats, screen, sb, ship, aliens, bullets, bunkers):
         ship.center_ship()
 
         #  Pause
-        # sleep(0.5)
-        # for i in range(8):
-            # pygame.time.delay(100)
-            # ship.blit_me()
+        sleep(0.5)
     else:
         stats.game_active = False
+        stats.game_over = True
         # stats.set_high_score_active = True
         pygame.mouse.set_visible(True)
 
@@ -402,7 +392,6 @@ def update_screen(ai_settings, screen, stats, sb, ship, aliens, bullets, play_bu
         rand_num = random.randint(0, 7500)
         random_alien = Alien4(ai_settings, screen)
         if rand_num == 1 and not ai_settings.rand_alien_alive:
-            print('Created Alien at ' + str(random_alien.rect))
             ai_settings.rand_alien_alive = True
         if ai_settings.rand_alien_alive:
             random_alien.move(bunkers)
@@ -412,7 +401,7 @@ def update_screen(ai_settings, screen, stats, sb, ship, aliens, bullets, play_bu
         sb.show_score(screen)
 
         #  Draw the play button if the game is inactive.
-    elif stats.get_initials and not stats.game_active and not stats.high_score_active:
+    elif stats.get_initials and not stats.game_active and not stats.high_score_active and not stats.game_over:
         screen.fill(ai_settings.bg_color)
 
         prompt_box = TextBox(ai_settings, screen, stats)
@@ -507,6 +496,16 @@ def update_screen(ai_settings, screen, stats, sb, ship, aliens, bullets, play_bu
         screen.fill(ai_settings.bg_color)
         stats.show_high_scores(ai_settings, screen, stats)
         back_button.draw_button()
+    elif stats.game_over:
+        screen.fill(ai_settings.bg_color)
+        end_text = TextBox(ai_settings, screen, stats)
+        end_text.update_text("Boohoo, you lost! Try again?")
+        end_text.text_rect.centerx = ai_settings.screen_width / 2
+        end_text.text_rect.centery = (ai_settings.screen_height / 2) - 200
+        end_text.draw(screen)
+
+        play_button.draw_button()
+        quit_button.draw_button()
 
     #  Make the most recently drawn screen visible.
     pygame.display.flip()
